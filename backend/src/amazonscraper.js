@@ -51,8 +51,3 @@ async function scrapeAmazonProduct(url) {
   return product;
 }
 
-const url =
-  "https://www.amazon.com/Adhesive-Upgraded-Holder-Organizer-Management/dp/B0BXL8BFYV/ref=sims_dp_d_dex_ai_speed_loc_mtl_v5_t1_d_sccl_3_2/141-9990932-4423218?pd_rd_w=O3IH1&content-id=amzn1.sym.da3a5e11-8f5f-413b-a68b-31ceac43c758&pf_rd_p=da3a5e11-8f5f-413b-a68b-31ceac43c758&pf_rd_r=PS4XMPVC3TD0236E60R2&pd_rd_wg=PFvQe&pd_rd_r=bb012942-2f3e-45ca-86c9-c43fda1216d9&pd_rd_i=B0BXL8BFYV&psc=1";
-scrapeAmazonProduct(url)
-  .then((product) => console.log(product))
-  .catch((error) => console.error("Error scraping Amazon product:", error));
