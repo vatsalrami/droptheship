@@ -1,18 +1,18 @@
 const puppeteer = require("puppeteer");
 
-async function scrapeAmazonProduct(url) {
+async function scrapeAmazonProduct(url: string) {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
   await page.goto(url, { waitUntil: "domcontentloaded" });
 
   const product = await page.evaluate(() => {
-    const selectText = (selector) => {
+    const selectText = (selector: string) => {
       const element = document.querySelector(selector);
-      return element ? element.innerText.trim() : "";
+      return element ? (element as HTMLElement).innerText.trim() : "";
     };
 
-    const selectAttribute = (selector, attribute) => {
+    const selectAttribute = (selector: string, attribute: string) => {
       const element = document.querySelector(selector);
       return element ? element.getAttribute(attribute) : "";
     };
@@ -33,7 +33,7 @@ async function scrapeAmazonProduct(url) {
       )
     );
     const description = descriptionItems
-      .map((item) => item.textContent.trim())
+      .map((item) => (item as HTMLElement).textContent?.trim() || "")
       .join(" ");
 
     const imageUrl = selectAttribute("#landingImage", "src");
@@ -51,3 +51,4 @@ async function scrapeAmazonProduct(url) {
   return product;
 }
 
+export { scrapeAmazonProduct };
